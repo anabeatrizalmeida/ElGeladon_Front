@@ -1,3 +1,4 @@
+import { ActionMode } from "constants/index";
 import "./PaletaListaItem.css";
 
 function PaletaListaItem({
@@ -7,10 +8,12 @@ function PaletaListaItem({
   onRemove,
   onAdd,
   clickItem,
+  mode,
 }) {
   const removeButton = (canRender, index) =>
     Boolean(canRender) && (
       <button
+        disabled={mode !== ActionMode.NORMAL}
         className="Acoes__remover"
         onClick={(e) => {
           e.stopPropagation();
@@ -25,19 +28,42 @@ function PaletaListaItem({
     Boolean(canRender) && (
       <span className="PaletaListaItem__badge"> {quantidadeSelecionada} </span>
     );
+  const badgeAction = (canRender) => {
+    if (canRender)
+      return (
+        <span
+          className={`PaletaListaItem__tag ${
+            mode === ActionMode.DELETAR && "PaletaListaItem__tag--deletar"
+          }`}
+        >
+          {" "}
+          {mode}{" "}
+        </span>
+      );
+  };
 
   return (
-    <div className="PaletaListaItem" onClick={() => clickItem(paleta.id)}>
+    <div
+      className={`
+        PaletaListaItem
+        ${mode !== ActionMode.NORMAL && "PaletaListaItem--disable"}
+        ${mode === ActionMode.DELETAR && "PaletaListaItem--deletar"}
+      `}
+      onClick={() => clickItem(paleta.id)}
+    >
       {badgeCounter(quantidadeSelecionada, index)}
+
+      {badgeAction(mode !== ActionMode.NORMAL)}
+
       <div>
         <div className="PaletaListaItem__titulo"> {paleta.titulo} </div>
         <div className="PaletaListaItem__preco">
-          {" "}
-          R$ {paleta.preco.toFixed(2)}{" "}
+          R$ {paleta.preco.toFixed(2)}
         </div>
         <div className="PaletaListaItem__descricao"> {paleta.descricao} </div>
         <div className="PaletaListaItem__acoes Acoes">
           <button
+            disabled={mode !== ActionMode.NORMAL}
             className={`Acoes__adicionar ${
               !quantidadeSelecionada && "Acoes__adicionar--preencher"
             }`}
@@ -48,6 +74,7 @@ function PaletaListaItem({
           >
             adicionar
           </button>
+
           {removeButton(quantidadeSelecionada, index)}
         </div>
       </div>

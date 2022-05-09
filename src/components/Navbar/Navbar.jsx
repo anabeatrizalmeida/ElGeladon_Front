@@ -6,7 +6,7 @@ import sacola from "assets/icons/sacola.svg";
 import logo from "assets/logo.svg";
 import deletar from "assets/icons/deletar.svg";
 
-function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag }) {
+function Navbar({ createPaleta, updatePaleta, mode, deletePaleta}) {
   return (
     <div className="Header">
       <div className="row">
@@ -63,7 +63,7 @@ function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag }) {
             />
           </button>
 
-          <div className="Opcoes__sacola Sacola" onClick={openBag}>
+          <div className="Opcoes__sacola Sacola">
             <img
               src={sacola}
               width="40px"

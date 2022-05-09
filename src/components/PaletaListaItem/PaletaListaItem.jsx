@@ -28,6 +28,7 @@ function PaletaListaItem({
     Boolean(canRender) && (
       <span className="PaletaListaItem__badge"> {quantidadeSelecionada} </span>
     );
+
   const badgeAction = (canRender) => {
     if (canRender)
       return (

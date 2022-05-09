@@ -9,11 +9,6 @@ const PaletaContext = {
     `${PaletaContext.paletaEndpoint()}/delete-paleta/${id}`,
 };
 
-/*const SacolaContext = {
-  getSacola: () => `${PaletaContext.paletaEndpoint()}/all-carrinho`,
-  createSacola: () => `${PaletaContext.paletaEndpoint()}/create-carrinho`,
-  purchase: () => `${PaletaContext.paletaEndpoint()}/finish-carrinho`,
-};*/
 
 export const Api = {
   baseUrl: "http://localhost:3000",

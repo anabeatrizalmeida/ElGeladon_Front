@@ -11,6 +11,6 @@ const PaletaContext = {
 
 
 export const Api = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: process.env.REACT_APP_API_URL,
   ...PaletaContext,
 };
